@@ -1,4 +1,5 @@
 const form = document.querySelector('.main-section__order-place')
+let formOrdersElements
 
 async function getOrders() {
     const url = 'http://127.0.0.1:3000/orders.json'
@@ -30,9 +31,32 @@ async function showOrders() {
         }
 
         form.lastElementChild.append(ordersList)
+
+        formOrdersElements = form.lastElementChild.lastElementChild
+        formOrdersElements.addEventListener('click', (event) => {
+            console.log(event.target.closest('li'))
+            createCart(event.target.closest('li')) 
+        })
     } catch(error) {
         console.error('Oops!', error)
     }
 } 
 
 showOrders()
+// Click event for orders
+function createCart(eventTarget) {
+    eventTarget.lastElementChild.classList.add('hidden')
+    const plusIcon = "../assets/img/plus.svg"
+    const minusIcon = "../assets/img/minus.svg"
+
+    const quantityCounter = document.createElement('div')
+    quantityCounter.innerHTML = `<img src=${minusIcon} />1<img src=${plusIcon} />`
+    quantityCounter.classList.add('plus-minus-cart')
+
+    eventTarget.append(quantityCounter)
+}
+
+// Will calculate the total price
+function totalOrder() {
+
+}

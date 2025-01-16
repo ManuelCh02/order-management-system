@@ -16,10 +16,6 @@ html {
     font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-body, main {
-    height: 100vh;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -141,6 +137,35 @@ main {
 
 
 /* JS styles */
+.hidden {
+    display: none;
+}
+
 .font-bold {
     font-weight: bold;
+}
+
+.plus-minus-cart {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+
+    & img {
+        width: 16px;
+    }
+}
+
+.plus-minus-cart:first-child {
+    margin-right: 5px;
+}
+
+.plus-minus-cart:last-child {
+    margin-left: 5px;
+}
+
+.plus-minus-cart img:hover {
+    background: #f8f8f8;
+    border-radius: 7px;
 }
