@@ -28,6 +28,8 @@ main {
 
     & h1 {
         font-size: 36px;
+        padding: 20px;
+        text-align: center;
     }
 }
 
@@ -95,11 +97,50 @@ main {
     }
 
     & button:first-child {
-        background: #5ca56d;
+        background: #000;
     }
 
     & button:last-child {
         margin: 10px 0;
-        background: #fc7777;
+        background: #949494;
     }
+}
+
+/* Display orders */
+.main-section__order-list {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px 0 20px 0;
+
+    & h3 {
+        text-align: center;
+    }
+
+    & ul {
+        width: inherit;
+        margin-top: 10px;
+        list-style: none;
+
+        & li {
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            line-height: 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+.main-section__order-list li:hover {
+    background: #f1f1f1;
+    transition: 0.5s;
+    border-radius: 7px;
+}
+
+
+/* JS styles */
+.font-bold {
+    font-weight: bold;
 }

@@ -8,18 +8,15 @@
 </head>
 <body>
     <main>
-        <h1>Place your order</h1>
-
         <section class="main-section">
+            <h1>Place your order</h1>
             <form action="POST" class="main-section__order-place">
                 <label for="">
-                    Name:
-                    <input type="text" required>
+                    <input type="text" placeholder="Name" required>
                 </label>
-                <label for="">
-                    Choose your order
-                    <input type="text">
-                </label>  
+                <div class="main-section__order-list">
+                    <h3>Choose your order</h3>
+                </div>
             </form>
             <!-- section for orders placed -->
             <div></div>
@@ -30,5 +27,6 @@
              </div>
         </section>
     </main>
+    <script src="index.js"></script>
 </body>
 </html>

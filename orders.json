@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Coffee",
+        "price": 3.99,
+        "img": "../assets/img/cup.svg"
+    },
+    {
+        "id": 2,
+        "name": "Baguette",
+        "price": 7.99,
+        "img": "../assets/img/baguette.svg"
+    },
+    {
+        "id": 3,
+        "name": "Espresso",
+        "price": 4.99,
+        "img": "../assets/img/coffee.svg"
+    },
+    {
+        "id": 4,
+        "name": "Cake",
+        "price": 20,
+        "img": "../assets/img/cake.svg"
+    }
+]
