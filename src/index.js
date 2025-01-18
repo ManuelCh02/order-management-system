@@ -34,8 +34,25 @@ async function showOrders() {
 
         formOrdersElements = form.lastElementChild.lastElementChild
         formOrdersElements.addEventListener('click', (event) => {
-            console.log(event.target.closest('li'))
-            createCart(event.target.closest('li')) 
+            console.log(event.target)
+            const getItemClickedFromEvent = event.target
+            if(getItemClickedFromEvent.nodeName !== 'LI') {
+                const getEventParentParent = getItemClickedFromEvent.parentNode
+                console.log(getEventParentParent)
+                if(getEventParentParent.lastElementChild.nodeName !== 'DIV') {
+                    createCart(event.target.closest('li')) 
+                }
+            }
+            if(event.target.nodeName === 'LI') {
+                const lastItemClicked = event.target.lastElementChild
+                if(lastItemClicked.nodeName === 'DIV') {
+                    lastItemClicked.classList.remove('hidden')
+                    lastItemClicked.classList.add('plus-minus-cart')
+                }
+                if(lastItemClicked.nodeName !== 'DIV') {
+                    createCart(event.target.closest('li')) 
+                }     
+            }
         })
     } catch(error) {
         console.error('Oops!', error)
@@ -45,18 +62,41 @@ async function showOrders() {
 showOrders()
 // Click event for orders
 function createCart(eventTarget) {
-    eventTarget.lastElementChild.classList.add('hidden')
+    // eventTarget.lastElementChild.classList.add('hidden')
     const plusIcon = "../assets/img/plus.svg"
     const minusIcon = "../assets/img/minus.svg"
+    let counter = 1
 
     const quantityCounter = document.createElement('div')
-    quantityCounter.innerHTML = `<img src=${minusIcon} />1<img src=${plusIcon} />`
+    quantityCounter.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
+    quantityCounter.innerHTML = `<img src=${minusIcon} /><span>${counter}</span><img src=${plusIcon} />`
     quantityCounter.classList.add('plus-minus-cart')
 
     eventTarget.append(quantityCounter)
-}
 
-// Will calculate the total price
-function totalOrder() {
+    quantityCounter.addEventListener('click', (event) => {
+        if(event.target.nodeName === 'IMG') {
+            cartQuantity(event.target)
+        }
+    })
 
+    function cartQuantity(icon) {
+        if(icon === quantityCounter.firstChild) {
+            counter -= 1
+            console.log(counter)
+        } else if(icon === quantityCounter.lastElementChild) {
+            counter += 1
+            console.log(counter)
+        }
+
+        if(counter === 0) {
+            quantityCounter.classList.add('hidden')
+            quantityCounter.classList.remove('plus-minus-cart')
+            counter = 1
+        } 
+        quantityCounter.firstChild.nextSibling.innerHTML = `${counter}`
+    } 
 }
+    

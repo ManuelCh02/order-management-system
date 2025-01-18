@@ -133,6 +133,11 @@ main {
     background: #f1f1f1;
     transition: 0.5s;
     border-radius: 7px;
+
+    & div {
+        background: #fff;
+        transition: 0.5s;
+    }
 }
 
 
@@ -146,23 +151,22 @@ main {
 }
 
 .plus-minus-cart {
-    width: 20%;
+    background: #f1f1f1;
+    width: 30%;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 16px;
+    border-radius: 7px;
 
     & img {
         width: 16px;
     }
 }
 
-.plus-minus-cart:first-child {
-    margin-right: 5px;
-}
-
-.plus-minus-cart:last-child {
-    margin-left: 5px;
+.plus-minus-active {
+    background: #f1f1f1;
 }
 
 .plus-minus-cart img:hover {
