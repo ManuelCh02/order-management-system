@@ -25,7 +25,7 @@ async function showOrders() {
     
         for(let order of orders) {
             const newOrder = document.createElement('li')
-            newOrder.innerHTML = `<img src="${order.img}" /><span>${order.name}</span><span>$${order.price}</span>`
+            newOrder.innerHTML = `<img src="${order.img}" /><span>${order.name}</span><span id="${order.id}">$${order.price}</span>`
             newOrder.firstChild.nextSibling.classList.add('font-bold')
             ordersList.append(newOrder)
         }
@@ -61,8 +61,8 @@ async function showOrders() {
 
 showOrders()
 // Click event for orders
-function createCart(eventTarget) {
-    // eventTarget.lastElementChild.classList.add('hidden')
+async function createCart(eventTarget) {
+    const orders = await getOrders()
     const plusIcon = "../assets/img/plus.svg"
     const minusIcon = "../assets/img/minus.svg"
     let counter = 1
@@ -83,12 +83,28 @@ function createCart(eventTarget) {
     })
 
     function cartQuantity(icon) {
+        const element = quantityCounter.previousElementSibling
+        const elementPrice = orders.find(order => order.id === parseInt(element.id)).price
+
+        let totalPrice
+        let rounded
+
         if(icon === quantityCounter.firstChild) {
             counter -= 1
-            console.log(counter)
+            if(counter !== 0) {
+                totalPrice = elementPrice * counter
+                rounded = Math.round(totalPrice * 100) / 100
+                rounded.toFixed(2)
+                element.innerHTML = `$${rounded}`
+            }   
         } else if(icon === quantityCounter.lastElementChild) {
             counter += 1
-            console.log(counter)
+            if(counter !== 0) {
+                totalPrice = elementPrice * counter
+                rounded = Math.round(totalPrice * 100) / 100
+                rounded.toFixed(2)
+                element.innerHTML = `$${rounded}`
+            }
         }
 
         if(counter === 0) {
@@ -99,4 +115,3 @@ function createCart(eventTarget) {
         quantityCounter.firstChild.nextSibling.innerHTML = `${counter}`
     } 
 }
-    
